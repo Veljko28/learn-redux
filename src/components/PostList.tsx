@@ -3,7 +3,7 @@ import { postCount } from '../redux/post/actionTypes';
 
 const PostList = () => {
 
-  const posts = useSelector(state => (state as any).posts)
+  const posts = useSelector(state => (state as any).posts.count)
   const dispatch = useDispatch()
   return (
     <div>
