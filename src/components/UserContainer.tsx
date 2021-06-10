@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { State } from '../redux/tsTypes';
-import { loginUser } from '../redux/user/userTypes';
+import { getApiUsers, loginUser } from '../redux/user/userTypes';
 
 const UserContainer = () => {
   const [user,handleUser] = React.useState({
@@ -9,7 +9,8 @@ const UserContainer = () => {
     password: ''  
   });
   const dispatch = useDispatch();
-  const userName = useSelector((state: State) => (state as any).user.userDetails?.name);
+  const userName = useSelector((state: State) => state.user.userDetails?.name);
+  const users = useSelector((state: State) => state.user.apiUsers);  
   return (
     <div>
       <h2>User Login</h2>
@@ -19,6 +20,12 @@ const UserContainer = () => {
       <br/>
       <button onClick={() => dispatch(loginUser(user))}>Login</button>
       <h3 style={{display: userName ? "block" : "none"}}>Hello {userName}</h3>
+      <br/>
+      <button onClick={() => dispatch(getApiUsers())}>Get Users</button>
+      {users.map(x => { return (
+        <h3 style={{display: x ? "block" : "none"}}>Hello I'm {x.name}</h3>
+      )}
+      )}
     </div>
   )
 }
