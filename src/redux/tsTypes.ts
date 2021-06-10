@@ -5,9 +5,14 @@ export interface Action {
 
 
 export interface State {
+  user: {
   userDetails?: {
-    name: string,
-    password: string
-  },
+      name: string,
+      password: string
+    },
+    apiUsers: [
+      any
+    ]
+  }
   posts?: number
 }
