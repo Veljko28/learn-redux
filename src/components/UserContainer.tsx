@@ -2,6 +2,8 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { State } from '../redux/tsTypes';
 import { getApiUsers, loginUser } from '../redux/user/userTypes';
+import { ApiUserDisplayCard } from './ApiUserDisplayCard';
+
 
 const UserContainer = () => {
   const [user,handleUser] = React.useState({
@@ -23,7 +25,7 @@ const UserContainer = () => {
       <br/>
       <button onClick={() => dispatch(getApiUsers())}>Get Users</button>
       {users.map(x => { return (
-        <h3 style={{display: x ? "block" : "none"}}>Hello I'm {x.name}</h3>
+        <ApiUserDisplayCard user={x} />
       )}
       )}
     </div>
