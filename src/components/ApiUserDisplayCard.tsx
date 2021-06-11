@@ -2,12 +2,13 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import { Grid } from '@material-ui/core';
 
 
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
-    maxWidth: 500,
+    // maxWidth: 500,
     margin: 15,
   },
   bullet: {
@@ -28,7 +29,7 @@ export const ApiUserDisplayCard = (props: any) => {
   const classes = useStyles();
   const {user} = props;
   return (
-    <div style={{display: 'flex', justifyContent: 'center'}}>
+    <Grid item xs={4}>
       <Card className={classes.root}>
       <CardContent>
         <Typography className={classes.title} color="textSecondary" gutterBottom>
@@ -44,7 +45,7 @@ export const ApiUserDisplayCard = (props: any) => {
           Hello I work for {user.company.name}
         </Typography>
       </CardContent>
-    </Card>
-    </div>
+      </Card>
+    </Grid>
   )
 }

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Grid } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { State } from '../redux/tsTypes';
 import { getApiUsers, loginUser } from '../redux/user/userTypes';
@@ -24,10 +25,11 @@ const UserContainer = () => {
       <h3 style={{display: userName ? "block" : "none"}}>Hello {userName}</h3>
       <br/>
       <button onClick={() => dispatch(getApiUsers())}>Get Users</button>
-      {users.map(x => { return (
-        <ApiUserDisplayCard user={x} />
-      )}
-      )}
+      <Grid container xs={12}>
+        {users.map(x => { return (
+          <ApiUserDisplayCard user={x} />
+          )})}
+      </Grid>
     </div>
   )
 }
