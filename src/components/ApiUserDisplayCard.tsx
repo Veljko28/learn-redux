@@ -29,7 +29,7 @@ export const ApiUserDisplayCard = (props: any) => {
   const classes = useStyles();
   const {user} = props;
   return (
-    <Grid item xs={4}>
+    <Grid item xs={4} >
       <Card className={classes.root}>
       <CardContent>
         <Typography className={classes.title} color="textSecondary" gutterBottom>

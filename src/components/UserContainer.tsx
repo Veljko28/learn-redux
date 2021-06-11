@@ -1,33 +1,37 @@
 import React from 'react'
 import { Grid } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
-import { State } from '../redux/tsTypes';
-import { getApiUsers, loginUser } from '../redux/user/userTypes';
+import { State, User } from '../redux/tsTypes';
+import { getApiUsers, addUser, handleUser } from '../redux/user/userTypes';
 import { ApiUserDisplayCard } from './ApiUserDisplayCard';
+import { v4 } from 'uuid';
 
 
 const UserContainer = () => {
-  const [user,handleUser] = React.useState({
-    name: '',
-    password: ''  
-  });
   const dispatch = useDispatch();
-  const userName = useSelector((state: State) => state.user.userDetails?.name);
+  const user: User = useSelector((state: State) => state.user.userDetails)!;
   const users = useSelector((state: State) => state.user.apiUsers);  
   return (
     <div>
-      <h2>User Login</h2>
-      <input type="text" value={user.name} onChange={e => handleUser({...user,name: e.target.value })}/>
+      <h2>User Add</h2>
+      <input type="text" value={user.name} onChange={e => dispatch(handleUser({...user,name: e.target.value }))}
+      placeholder="Real Name"/>
       <br/>
-      <input type="password" value={user.password} onChange={e => handleUser({...user,password: e.target.value })}/>
+      <input type="text" value={user.username} onChange={e => dispatch(handleUser({...user,username: e.target.value })) }
+      placeholder="Username"/>
       <br/>
-      <button onClick={() => dispatch(loginUser(user))}>Login</button>
-      <h3 style={{display: userName ? "block" : "none"}}>Hello {userName}</h3>
+      <input type="text" value={user.company.name} onChange={e => dispatch(handleUser({...user,company: {
+        name: e.target.value
+      }}))
+      }
+      placeholder="Company"/>
+      <br/>
+      <button onClick={() => dispatch(addUser(user))}>Add User</button>
       <br/>
       <button onClick={() => dispatch(getApiUsers())}>Get Users</button>
-      <Grid container xs={12}>
+      <Grid container >
         {users.map(x => { return (
-          <ApiUserDisplayCard user={x} />
+          <ApiUserDisplayCard user={x} key={v4()} />
           )})}
       </Grid>
     </div>
