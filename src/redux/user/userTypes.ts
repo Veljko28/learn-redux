@@ -1,6 +1,8 @@
 import axios from "axios";
+import { User } from "../tsTypes";
 
-export const LOGIN_USER = "LOGIN_USER";
+export const ADD_USER = "ADD_USER";
+export const HANDLE_USER = "HANDLE_USER";
 export const API_USERS = "API_USERS";
 export const API_USERS_SUCCESS = "API_USERS_SUCCESS";
 export const API_USERS_FAILURE = "API_USERS_FAILURE";
@@ -9,8 +11,14 @@ export const API_USERS_FAILURE = "API_USERS_FAILURE";
 
 
 
-export const loginUser = (user: {name: string, password: string}) => ({
-  type: LOGIN_USER,
+export const addUser = (user: User) => ({
+  type: ADD_USER,
+  payload: user
+});
+
+
+export const handleUser = (user: User) => ({
+  type: HANDLE_USER,
   payload: user
 });
 

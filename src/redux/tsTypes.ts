@@ -3,16 +3,20 @@ export interface Action {
   payload?: any
 }
 
+export interface User {
+  id: number,
+  name: string,
+  username: string,
+  company: {name: string}
+}
 
 export interface State {
   user: {
-  userDetails?: {
-      name: string,
-      password: string
-    },
+  userDetails?: User,
     apiUsers: [
       any
     ]
   }
   posts?: number
 }
+
